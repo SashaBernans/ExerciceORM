@@ -18,6 +18,7 @@ namespace TestORMCodeFirst.Persistence
 
         public virtual DbSet<Etudiant> Etudiants { get; set; }  
         public virtual DbSet<InscriptionCours> InscCours { get; set; }
+        public virtual DbSet<Cours> Cours { get; set; }
         
 
 
@@ -43,7 +44,9 @@ namespace TestORMCodeFirst.Persistence
                         .WithMany(etud => etud.Cours)
                         .OnDelete(DeleteBehavior.Restrict);
 
-       }
+            //Cours
+            
+        }
 
     }
 }

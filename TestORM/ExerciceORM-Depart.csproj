@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="src\DAL\EFEtudiantRepository.cs" />
     <Compile Include="src\DAL\EFInscCoursRepository.cs" />
+    <Compile Include="src\Entities\Cours.cs" />
     <Compile Include="src\Entities\Etudiant.cs" />
     <Compile Include="src\Entities\InscriptionCours.cs" />
     <Compile Include="src\Persistence\CegepContext.cs" />

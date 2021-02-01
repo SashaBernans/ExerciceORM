@@ -65,5 +65,20 @@ namespace TestORMCodeFirst.DAL
         {
             return contexte.InscCours.Where(insc => insc.CodeSession == session && insc.EtudiantID == etudiantId).Count();
         }
+
+        public void MettreAJourNoteFinale(short etudiantID, string cours, string session, short note)
+        {
+            InscriptionCours inscCours = new InscriptionCours();
+            inscCours.EtudiantID = etudiantID;
+            inscCours.CodeCours = cours;
+            inscCours.CodeSession = session;
+            inscCours.NoteFinale = note;
+            contexte.InscCours.Update(inscCours);
+            contexte.SaveChanges();
+        }
+        public double ObtenirPourUneClasseLaMoyenne(string cours, string session)
+        {
+            
+        }
     }
 }
