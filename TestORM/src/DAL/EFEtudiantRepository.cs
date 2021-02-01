@@ -82,5 +82,25 @@ namespace TestORMCodeFirst.DAL
             return contexte.Etudiants.ToList();
         }
 
+        public void ModifierEtudiant(Etudiant etudiant)
+        {
+            contexte.Etudiants.Update(etudiant);
+            contexte.SaveChanges();
+        }
+
+        public int NombreEtudiants()
+        {
+            return contexte.Etudiants.Count();
+        }
+
+        public int? NombreInscriptionsCours(short etudiantId,string session)
+        {
+            Etudiant etud = contexte.Etudiants.Find(etudiantId);
+            if (etud != null)
+            {
+                return etud.Cours.Where(insc => insc.CodeSession == session).Count();
+            }
+            return null;
+        }
     }
 }
