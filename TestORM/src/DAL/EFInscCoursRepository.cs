@@ -68,17 +68,22 @@ namespace TestORMCodeFirst.DAL
 
         public void MettreAJourNoteFinale(short etudiantID, string cours, string session, short note)
         {
-            InscriptionCours inscCours = new InscriptionCours();
-            inscCours.EtudiantID = etudiantID;
-            inscCours.CodeCours = cours;
-            inscCours.CodeSession = session;
+            InscriptionCours inscCours = contexte.InscCours.Find(etudiantID,cours,session);
             inscCours.NoteFinale = note;
             contexte.InscCours.Update(inscCours);
             contexte.SaveChanges();
         }
+
         public double ObtenirPourUneClasseLaMoyenne(string cours, string session)
         {
-            
+            return contexte.InscCours.Where(insc => insc.CodeCours == cours && insc.CodeSession == session)
+                                                                .Select(insc => Convert.ToInt32(insc.NoteFinale))
+                                                                .Average();                               
+        }
+
+        public int ObtenirPourUneClasseNombreEchecs(string cours, string session)
+        {
+            return contexte.InscCours.Where(insc => insc.CodeCours == cours && insc.CodeSession == session && insc.NoteFinale < 60).Count();
         }
     }
 }

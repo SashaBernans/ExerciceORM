@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TestORMCodeFirst.DAL
 {
-    class EFECoursRepositoryTest
+    public class EFCoursRepositoryTest
     {
         private EFCoursRepository repoCours;
         private EFInscCoursRepository repoInscriptions;
@@ -26,5 +26,23 @@ namespace TestORMCodeFirst.DAL
         }
 
         [Fact]
+        public void AjouterCours_ShouldAddACoursToTheRepo()
+        {
+            // Arrange
+            SetUp();
+            Cours cours = new Cours
+            {
+                CodeCours = "w40-333",
+                NomCours = "science"
+            };
+
+            // Act
+            repoCours.AjouterCours(cours);
+
+            // Assert
+            var result = this.repoCours.ObtenirListeCours();
+            Assert.Single(result);
+            Assert.Same(cours, result.First());
+        }
     }
 }

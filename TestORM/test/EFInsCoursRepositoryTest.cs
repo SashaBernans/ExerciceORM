@@ -136,5 +136,31 @@ namespace TestORMCodeFirst.DAL
             Assert.Equal(5, NbInscriptions);
         }
 
+        [Fact]
+        public void MettreAJourNoteFinale_ShouldModifiFinalGrade()
+        {
+            // Arrange
+            SetUp();
+            DataSeed();
+
+            //Act
+            repoInscriptions.MettreAJourNoteFinale(1, "w49", "H20", 60);
+
+            // Assert
+            Assert.Equal(60, repoInscriptions.ObtenirInscription(1, "w49", "H20").NoteFinale);
+        }
+        [Fact]
+        public void ObtenirPourUneClasseLaMoyenne_ShouldReturnClassAverage()
+        {
+            // Arrange
+            SetUp();
+            DataSeed();
+
+            //Act
+            double result=repoInscriptions.ObtenirPourUneClasseLaMoyenne("w49", "H20");
+
+            // Assert
+            Assert.Equal(0, result);
+        }
     }
 }
